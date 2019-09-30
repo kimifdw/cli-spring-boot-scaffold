@@ -44,7 +44,7 @@ And install the Spring Scaffold plugin
     $ git clone https://github.com/NetoDevel/cli-spring-boot-scaffold.git
     $ cd cli-spring-boot-scaffold
     $ mvn install
-    $ spring install br.com.netodevel:spring-scaffold-cli:0.0.1-SNAPSHOT
+    $ spring install br.com.netodevel:spring-scaffold-cli:{LATEST_RELEASE}
 
 
 # Usage
@@ -53,10 +53,37 @@ And install the Spring Scaffold plugin
     $ cd my-project
     $ spring setup:scaffold
     $ spring scaffold -n "User" -p "name:String email:String"
-    $ spring db:create -p "mysql"
+    $ spring db:create -p "mysql" (REMOVED)
     $ mvn spring-boot:run
 
 Default is spring 1.x, edit scaffold.info to change to 2.x before run *spring scaffold*.
+
+
+### Template command
+
+    $ spring template --list
+
+      Templates available
+      * jms-aws-sqs
+      * openj9
+
+### Apply template
+    $ spring template -t jms-aws-sqs
+
+    Generate config to: jms-aws-sqs
+    CREATED src/main/java/com/example/cloudawsmessaging/consumer/MessageListener.java
+    CREATED src/main/java/com/example/cloudawsmessaging/consumer/EntryPointMessage.java
+    CREATED src/main/java/com/example/cloudawsmessaging/consumer/ProducerMessage.java
+    Add dependencies in pom.xml
+    Add properties in application.properties
+
+    cloud.aws.credentials.accessKey=xxxxxx
+    cloud.aws.credentials.secretKey=xxxxxx
+    cloud.aws.region.static=us-east-1
+    cloud.aws.stack.auto=false
+    cloud.aws.sqs.queue-name=my-queue.fifo
+
+[Template command documentation](https://github.com/NetoDevel/cli-spring-boot-scaffold/wiki/Template-command)
 
 # Structure
 
@@ -100,7 +127,7 @@ Default is spring 1.x, edit scaffold.info to change to 2.x before run *spring sc
 | spring controller  | -n | spring controller -n User
 | spring scaffold  | -n -p |spring scaffold -n "User" -p "name:String mail:String" |
 | spring setup:scaffold| -n -db -u -p | spring  setup:scaffold -n "com.example" -db "dbname" -u "root" -p "root"
-| spring db:create  | -p  | spring db:create -p "mysql"
+| spring db:create  | -p  | spring db:create -p "mysql" (REMOVED)
 
 
 # License
